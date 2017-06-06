@@ -348,7 +348,7 @@ angular.module('ui.bootstrap.tooltip', ['ui.bootstrap.position', 'ui.bootstrap.s
 
               if (tooltip) {
                 tooltip.remove();
-                
+
                 tooltip = null;
                 if (adjustmentTimeout) {
                   $timeout.cancel(adjustmentTimeout);
@@ -356,7 +356,7 @@ angular.module('ui.bootstrap.tooltip', ['ui.bootstrap.position', 'ui.bootstrap.s
               }
 
               openedTooltips.remove(ttScope);
-              
+
               if (tooltipLinkedScope) {
                 tooltipLinkedScope.$destroy();
                 tooltipLinkedScope = null;
@@ -405,7 +405,7 @@ angular.module('ui.bootstrap.tooltip', ['ui.bootstrap.position', 'ui.bootstrap.s
                 cancelShow();
               }
 
-              if (val && ttScope.isOpen) {
+              if (val && ttScope && ttScope.isOpen) {
                 hide();
               }
             });
@@ -425,7 +425,7 @@ angular.module('ui.bootstrap.tooltip', ['ui.bootstrap.position', 'ui.bootstrap.s
                 observers.push(
                   scope.$watch(contentParse, function(val) {
                     ttScope.content = val;
-                    if (!val && ttScope.isOpen) {
+                    if (!val && ttScope && ttScope.isOpen) {
                       hide();
                     }
                   })
@@ -448,7 +448,7 @@ angular.module('ui.bootstrap.tooltip', ['ui.bootstrap.position', 'ui.bootstrap.s
                 observers.push(
                   attrs.$observe(ttType, function(val) {
                     ttScope.content = val;
-                    if (!val && ttScope.isOpen) {
+                    if (!val && ttScope && ttScope.isOpen) {
                       hide();
                     } else {
                       positionTooltip();
